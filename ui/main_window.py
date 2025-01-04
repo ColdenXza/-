@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
                             QPushButton, QLabel, QFileDialog, QProgressBar, QApplication,
-                            QInputDialog, QTableWidget, QTableWidgetItem)
+                            QInputDialog, QTableWidget, QTableWidgetItem)  # 添加QInputDialog
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QImage, QPixmap
 import cv2
@@ -29,17 +29,17 @@ class MainWindow(QMainWindow):
         
         # 图像增强参数
         self.enable_enhancement = False
-
+        
         # 添加批处理结果存储路径
         self.output_dir = Path("detection_results")
         self.output_dir.mkdir(exist_ok=True)
-
+        
         # 添加人脸数据相关的属性
         self.known_face_encodings = []
         self.known_face_names = []
         self.faces_db_file = "faces_db.pkl"
         self.load_face_database()
-
+        
         # 初始化数据库
         self.attendance_db = AttendanceDB()
         
@@ -179,7 +179,7 @@ class MainWindow(QMainWindow):
             self.video_label.setPixmap(QPixmap.fromImage(qt_image))
 
     def closeEvent(self, event):
-        self.camera.release() 
+        self.camera.release()
 
     def process_batch_images(self):
         """批量处理图片文件夹"""
